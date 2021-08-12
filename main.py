@@ -17,17 +17,6 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
-@bot.command()
-async def reactionform(ctx):
-    embed=discord.Embed(title="Reaction Menu Test",description="Delete 20 messages?") # Let's make our embed here...
-    message = await ctx.send(embed=embed) # And send it! But we want to capture it as a variable!
-    form = ReactionForm(message,bot,ctx.author) # Initialize the reaction form...
-    form.add_reaction("✅",True) # Add the ✅ reaction which will return True.
-    form.add_reaction("❌",False) # Add the ❌ reaction which will return False.
-    choice = await form.start() # Start the form! Choice will be True or False based on the input.
-    if choice: # If choice is true:
-        await ctx.channel.purge(limit=20) # delete 20 messages!
-
 @client.event
 async def on_ready(): 
     print('We have logged in as {0.user}'.format(client))#Info Console
