@@ -4,10 +4,15 @@ import discord.ext
 from discord.ext import tasks
 from discord.ext import commands
 from discord import Embed
-from discord.ext.forms import Form
+from dotenv import load_dotenv
+import os
 from discord_slash import SlashCommand
 
-client = discord.Client(intents=discord.Intents.all())
+load_dotenv()
+
+TOKEN = os.getenv('TOKEN')
+
+client = discord.Client()
 slash = SlashCommand(client, sync_commands=True)
 bot = commands.Bot(command_prefix='>')
 
@@ -80,4 +85,4 @@ async def on_message(message):#Comandi
         await message.channel.send('<@759400024966299689>!')
     
      
-client.run('TOKEN')
+client.run(TOKEN)
